@@ -1,0 +1,2998 @@
+{
+	"info": {
+		"_postman_id": "c099c5c4-d070-4a15-aec4-49fddbc90d26",
+		"name": "Voice-Nexmo",
+		"description": "The Voice API lets you create outboud calls, control in progress calls\n  and get information about current and historical calls.\n\n\nThe API is divided in 2 big resources blocks:\n\n - Application: Manage application level options\n - Call: Manage call level options\n\n## Call Guidelines\n\n 1. Create an application\n 2. Make a call\n\n\n## Guidelines to create an application\nIn order to create an application, we need to provide 3 values: \n - name\n - type (voice)\n - answer_url\n - event_url\n\nFor more information regarding the meaning of each field, refer to the <samp>POST /application</samp> endpoint.\nAmong the return values of this call, there is the application identifier (<samp>uuid</samp>). It is needed to make calls or to operate with the application.\n## Guidelines to make a call\nIn order to make a call, we must include the identifier of the application in the **header** and fill the basic fields from the **request body**:\n - to\n - from\n - answer_url\n \nMore information about the meaning of the fields and optional parameters can be found in POST /calls endpoint description.\nThis call will return, among other fields, the <samp>conversation_uuid</samp> where the call is attached to and the identifier (<samp>uuid</samp>) of the call itself.\n\n---\n## [KPN Developer](https://developer.kpn.com/)<br/> [Getting Started](https://developer.kpn.com/getting-started)\n\n  ---\n\nContact Support:\n Name: API Support\n Email: api_developer@kpn.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "4406147-c099c5c4-d070-4a15-aec4-49fddbc90d26"
+	},
+	"item": [
+		{
+			"name": "voice",
+			"item": [
+				{
+					"name": "calls",
+					"item": [
+						{
+							"name": "{uuid}",
+							"item": [
+								{
+									"name": "talk",
+									"item": [
+										{
+											"name": "Play text to speech into a call",
+											"id": "a5d61f8a-2b12-426b-a15b-ab050d41d119",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"text\": \"\",\n  \"voiceName\": \"Kimberly\",\n  \"loop\": 1\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid/talk",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid",
+														"talk"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Play text to speech into a call\nThe options to be included in the body are:\n - text you want the machine to read\n - voiceName the name of the voice and language you want to use\n - loop value with the number of times you want the text to be repeated. 0 for infinite"
+											},
+											"response": [
+												{
+													"id": "d21ec2a5-3345-41d1-8dec-df458aa5621a",
+													"name": "Ok",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"text\": \"\",\n  \"voiceName\": \"Kimberly\",\n  \"loop\": 1\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/talk",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"talk"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Play text to speech into a call\nThe options to be included in the body are:\n - text you want the machine to read\n - voiceName the name of the voice and language you want to use\n - loop value with the number of times you want the text to be repeated. 0 for infinite"
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"message\": \"<string>\",\n  \"uuid\": \"{{application.uuid}}\"\n}"
+												},
+												{
+													"id": "35ea3a6e-9beb-4ccb-acc4-2320143faf81",
+													"name": "Untitled Example",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"text\": \"\",\n  \"voiceName\": \"Kimberly\",\n  \"loop\": 1\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/talk?api-version=",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"talk"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Play text to speech into a call\nThe options to be included in the body are:\n - text you want the machine to read\n - voiceName the name of the voice and language you want to use\n - loop value with the number of times you want the text to be repeated. 0 for infinite"
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+												}
+											]
+										},
+										{
+											"name": "Stop text to speech in a call",
+											"id": "105f3170-0ec1-411e-a490-56b4c6816eb3",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid/talk",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid",
+														"talk"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Stop text to speech in a call"
+											},
+											"response": [
+												{
+													"id": "2851a74b-5894-41db-ad5c-56128763f64f",
+													"name": "Ok",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/talk",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"talk"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Stop text to speech in a call"
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"message\": \"<string>\",\n  \"uuid\": \"{{application.uuid}}\"\n}"
+												},
+												{
+													"id": "71bddbc7-87b0-4707-821b-6f156759dfd8",
+													"name": "Untitled Example",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/talk?api-version=",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"talk"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Stop text to speech in a call"
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+												}
+											]
+										}
+									],
+									"id": "cbf9345c-9429-4c2a-b338-4d3ca576ec40"
+								},
+								{
+									"name": "stream",
+									"item": [
+										{
+											"name": "Play an audio file into a call",
+											"id": "bde6b511-5309-4cd4-98bb-bd2ac59bda57",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"stream_url\": [\n    \"\",\n    \"\"\n  ],\n  \"loop\": 1\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid/stream",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid",
+														"stream"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Play an audio file into a call\nInclude in the body a list of URL under stream_url and loop to configure the number of times to play the file (0 for infinite)."
+											},
+											"response": [
+												{
+													"id": "b923a754-0e7a-4a9c-b1d4-4dedea55f739",
+													"name": "Ok",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"stream_url\": [\n    \"\",\n    \"\"\n  ],\n  \"loop\": 1\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/stream",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"stream"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Play an audio file into a call\nInclude in the body a list of URL under stream_url and loop to configure the number of times to play the file (0 for infinite)."
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"message\": \"<string>\",\n  \"uuid\": \"{{application.uuid}}\"\n}"
+												},
+												{
+													"id": "1ac256cf-4a3f-4336-9396-9f63b80b19f4",
+													"name": "Untitled Example",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"stream_url\": [\n    \"\",\n    \"\"\n  ],\n  \"loop\": 1\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/stream?api-version=",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"stream"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Play an audio file into a call\nInclude in the body a list of URL under stream_url and loop to configure the number of times to play the file (0 for infinite)."
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+												}
+											]
+										},
+										{
+											"name": "Stop playing an audio file into a call",
+											"id": "1553304a-054b-486e-9b60-e9db8fbea44c",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid/stream",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid",
+														"stream"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Stop playing an audio file into a call"
+											},
+											"response": [
+												{
+													"id": "a1d1e253-11cf-4c6e-be14-cd0cd474bca7",
+													"name": "Ok",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/stream",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"stream"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Stop playing an audio file into a call"
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"message\": \"<string>\",\n  \"uuid\": \"{{application.uuid}}\"\n}"
+												},
+												{
+													"id": "a15c3b00-4c45-44cd-a6d7-8d0b72263bb0",
+													"name": "Untitled Example",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/stream?api-version=",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"stream"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Stop playing an audio file into a call"
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+												}
+											]
+										}
+									],
+									"id": "52f76c69-2b89-4bb9-a271-0a9e010a3edc"
+								},
+								{
+									"name": "dtmf",
+									"item": [
+										{
+											"name": "Play DTMF tones into a call",
+											"id": "22a6760f-dd35-424b-847c-cb7a6fa2052e",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid/dtmf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid",
+														"dtmf"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Play DTMF tones into a call\nSpecify the digits to send in the request body"
+											},
+											"response": [
+												{
+													"id": "1da5ead5-e092-4491-99aa-6918b190b6cd",
+													"name": "Ok",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/dtmf",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"dtmf"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Play DTMF tones into a call\nSpecify the digits to send in the request body"
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"message\": \"<string>\",\n  \"uuid\": \"{{application.uuid}}\"\n}"
+												},
+												{
+													"id": "37b76361-8505-42c8-b801-9048688f4fc8",
+													"name": "Untitled Example",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"description": "API-version to use. Not provided uses latest",
+																"key": "api-version",
+																"value": "",
+																"disabled": true
+															},
+															{
+																"description": "(Required) UUID of the application",
+																"key": "ApplicationId",
+																"value": "{{application.uuid}}"
+															},
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/voice/calls/:uuid/dtmf?api-version=",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"voice",
+																"calls",
+																":uuid",
+																"dtmf"
+															],
+															"query": [
+																{
+																	"key": "api-version",
+																	"value": "",
+																	"description": "API-version to use. Not provided uses latest",
+																	"disabled": true
+																}
+															],
+															"variable": [
+																{
+																	"key": "uuid",
+																	"value": "{{voice.uuid}}"
+																}
+															]
+														},
+														"description": "Play DTMF tones into a call\nSpecify the digits to send in the request body"
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+												}
+											]
+										}
+									],
+									"id": "56f528c8-b731-4691-b2df-3b09eddb7142"
+								},
+								{
+									"name": "Details of a specific call",
+									"id": "861380c8-5ede-4d9e-a47d-08d442837521",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"description": "(Required) UUID of the application",
+												"key": "ApplicationId",
+												"value": "{{application.uuid}}"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/voice/calls/:uuid",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"voice",
+												"calls",
+												":uuid"
+											],
+											"query": [
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "uuid",
+													"value": "{{voice.uuid}}"
+												}
+											]
+										},
+										"description": "Get detailed information of a specific call"
+									},
+									"response": [
+										{
+											"id": "f4597d5d-432d-4745-be40-6d211d2c94dd",
+											"name": "Untitled Example",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Get detailed information of a specific call"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"uuid\": \"{{application.uuid}}\",\n  \"conversation_uuid\": \"\",\n  \"to\": [\n    {\n      \"type\": \"<string>\",\n      \"number\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"number\": \"<string>\"\n    }\n  ],\n  \"from\": [\n    {\n      \"type\": \"<string>\",\n      \"number\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"number\": \"<string>\"\n    }\n  ],\n  \"status\": \"ringing\",\n  \"direction\": \"inbound\",\n  \"rate\": \"<string>\",\n  \"price\": \"<string>\",\n  \"duration\": \"<string>\",\n  \"start_time\": \"<string>\",\n  \"end_time\": \"<string>\",\n  \"network\": \"<string>\"\n}"
+										},
+										{
+											"id": "d589dd40-0dd6-484b-a415-36a72b3465d1",
+											"name": "Untitled Example",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid?api-version=",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Get detailed information of a specific call"
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Modify an in progress call",
+									"id": "f7347efd-212c-402c-9c8c-4f7abf492767",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"description": "(Required) UUID of the application",
+												"key": "ApplicationId",
+												"value": "{{application.uuid}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"action\": \"mute\",\n  \"destination\": {\n    \"type\": \"ncco\",\n    \"url\": [\n      \"\",\n      \"\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/voice/calls/:uuid",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"voice",
+												"calls",
+												":uuid"
+											],
+											"query": [
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "uuid",
+													"value": "{{voice.uuid}}"
+												}
+											]
+										},
+										"description": "Modify an in progress call\nAllows to modify the action and the destination (required when action is `transfer`).\nAllowed action values are: `hangup`, `mute`, `unmute`, `earmuff`, `unearmuff` and `transfer`."
+									},
+									"response": [
+										{
+											"id": "510c3810-3c0a-4294-a77c-7f8e6414d320",
+											"name": "No Content",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"action\": \"mute\",\n  \"destination\": {\n    \"type\": \"ncco\",\n    \"url\": [\n      \"\",\n      \"\"\n    ]\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Modify an in progress call\nAllows to modify the action and the destination (required when action is `transfer`).\nAllowed action values are: `hangup`, `mute`, `unmute`, `earmuff`, `unearmuff` and `transfer`."
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": null
+										},
+										{
+											"id": "e749b629-94af-4139-9212-aeff73f8e91d",
+											"name": "Untitled Example",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"description": "API-version to use. Not provided uses latest",
+														"key": "api-version",
+														"value": "",
+														"disabled": true
+													},
+													{
+														"description": "(Required) UUID of the application",
+														"key": "ApplicationId",
+														"value": "{{application.uuid}}"
+													},
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"action\": \"mute\",\n  \"destination\": {\n    \"type\": \"ncco\",\n    \"url\": [\n      \"\",\n      \"\"\n    ]\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/voice/calls/:uuid?api-version=",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"voice",
+														"calls",
+														":uuid"
+													],
+													"query": [
+														{
+															"key": "api-version",
+															"value": "",
+															"description": "API-version to use. Not provided uses latest",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "uuid",
+															"value": "{{voice.uuid}}"
+														}
+													]
+												},
+												"description": "Modify an in progress call\nAllows to modify the action and the destination (required when action is `transfer`).\nAllowed action values are: `hangup`, `mute`, `unmute`, `earmuff`, `unearmuff` and `transfer`."
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+										}
+									]
+								}
+							],
+							"id": "68c8b4e1-e95c-4f17-bad2-8f9458272bf8"
+						},
+						{
+							"name": "Outbound call",
+							"id": "af0e7a77-1e0f-4af7-a07f-243403212a5e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"description": "(Required) UUID of the application",
+										"key": "ApplicationId",
+										"value": "{{application.uuid}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n{\n  \"to\": [\n    {\n      \"type\": \"phone\",\n      \"number\": \"\"\n\n    }\n  ],\n  \"from\": {\n    \"type\": \"phone\",\n    \"number\": \"\"\n  },\n  \"answer_url\": [\n    \"\"\n  ]\n}\n",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/voice/calls",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"voice",
+										"calls"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Create an outbound Call.\n\nThe basic body `to`, `from` and `answer_url` fields are **mandatory**. \n\nOther arguments like `answer_method`, `event_url`, `event_method`, `machine_detection`, `length_timer`, `ringing_timer` are **optional**.\n\nCreates a call and returns a JSON object with the call identifier (`uuid`), `status` of the call, `conversation_uuid` where the call is attached to and the `direction` of the call."
+							},
+							"response": [
+								{
+									"id": "d36e2be1-bb06-4d63-8353-11f340f81f09",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"description": "(Required) UUID of the application",
+												"key": "ApplicationId",
+												"value": "{{application.uuid}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "\n{\n  \"to\": [\n    {\n      \"type\": \"phone\",\n      \"number\": \"\"\n\n    }\n  ],\n  \"from\": {\n    \"type\": \"phone\",\n    \"number\": \"\"\n  },\n  \"answer_url\": [\n    \"\"\n  ]\n}\n",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/voice/calls",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"voice",
+												"calls"
+											],
+											"query": [
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											]
+										},
+										"description": "Create an outbound Call.\n\nThe basic body `to`, `from` and `answer_url` fields are **mandatory**. \n\nOther arguments like `answer_method`, `event_url`, `event_method`, `machine_detection`, `length_timer`, `ringing_timer` are **optional**.\n\nCreates a call and returns a JSON object with the call identifier (`uuid`), `status` of the call, `conversation_uuid` where the call is attached to and the `direction` of the call."
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uuid\": \"{{application.uuid}}\",\n  \"status\": \"started\",\n  \"direction\": \"outbound\",\n  \"conversation_uuid\": \"\"\n}"
+								},
+								{
+									"id": "47d86543-6686-468b-a0b5-548513d16fe1",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"description": "(Required) UUID of the application",
+												"key": "ApplicationId",
+												"value": "{{application.uuid}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "\n{\n  \"to\": [\n    {\n      \"type\": \"phone\",\n      \"number\": \"\"\n\n    }\n  ],\n  \"from\": {\n    \"type\": \"phone\",\n    \"number\": \"\"\n  },\n  \"answer_url\": [\n    \"\"\n  ]\n}\n",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/voice/calls?api-version=",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"voice",
+												"calls"
+											],
+											"query": [
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											]
+										},
+										"description": "Create an outbound Call.\n\nThe basic body `to`, `from` and `answer_url` fields are **mandatory**. \n\nOther arguments like `answer_method`, `event_url`, `event_method`, `machine_detection`, `length_timer`, `ringing_timer` are **optional**.\n\nCreates a call and returns a JSON object with the call identifier (`uuid`), `status` of the call, `conversation_uuid` where the call is attached to and the `direction` of the call."
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Details of your calls",
+							"id": "068a838a-44e6-43cb-9ae6-f5ad917f89d8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"description": "(Required) UUID of the application",
+										"key": "ApplicationId",
+										"value": "{{application.uuid}}"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/voice/calls?status=machine&date_start=&date_end=&page_size=10&record_index=0&order=asc&conversation_uuid=",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"voice",
+										"calls"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "machine",
+											"description": "Filter by call status"
+										},
+										{
+											"key": "date_start",
+											"value": "",
+											"description": "Return the records that occurred after this point in time"
+										},
+										{
+											"key": "date_end",
+											"value": "",
+											"description": "Return the records that occurred before this point in time"
+										},
+										{
+											"key": "page_size",
+											"value": "10",
+											"description": "Return this amount of records in the response"
+										},
+										{
+											"key": "record_index",
+											"value": "0",
+											"description": "Return calls from this index in the response"
+										},
+										{
+											"key": "order",
+											"value": "asc",
+											"description": "Either ascending or descending order."
+										},
+										{
+											"key": "conversation_uuid",
+											"value": "",
+											"description": "Return all the records associated with a specific conversation."
+										},
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Get details of your calls.\nFiltering works by tunning the following fields\n - status\n - date_start\n - date_end\n - conversation_uuid\n\nPaging configuration fields\n - page_size (default 10)\n - record_index (default 0)\n - order (default asc)"
+							},
+							"response": [
+								{
+									"id": "9f0c49f2-c688-4a2c-9395-b3481ffcb277",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"description": "(Required) UUID of the application",
+												"key": "ApplicationId",
+												"value": "{{application.uuid}}"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/voice/calls?status=machine&date_start=&date_end=&page_size=10&record_index=0&order=asc&conversation_uuid=",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"voice",
+												"calls"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "machine",
+													"description": "Filter by call status"
+												},
+												{
+													"key": "date_start",
+													"value": "",
+													"description": "Return the records that occurred after this point in time"
+												},
+												{
+													"key": "date_end",
+													"value": "",
+													"description": "Return the records that occurred before this point in time"
+												},
+												{
+													"key": "page_size",
+													"value": "10",
+													"description": "Return this amount of records in the response"
+												},
+												{
+													"key": "record_index",
+													"value": "0",
+													"description": "Return calls from this index in the response"
+												},
+												{
+													"key": "order",
+													"value": "asc",
+													"description": "Either ascending or descending order."
+												},
+												{
+													"key": "conversation_uuid",
+													"value": "",
+													"description": "Return all the records associated with a specific conversation."
+												},
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											]
+										},
+										"description": "Get details of your calls.\nFiltering works by tunning the following fields\n - status\n - date_start\n - date_end\n - conversation_uuid\n\nPaging configuration fields\n - page_size (default 10)\n - record_index (default 0)\n - order (default asc)"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"record_index\": \"<integer>\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"calls\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          }\n        },\n        \"uuid\": \"{{application.uuid}}\",\n        \"conversation_uuid\": \"\",\n        \"to\": [\n          {\n            \"type\": \"<string>\",\n            \"number\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"number\": \"<string>\"\n          }\n        ],\n        \"from\": [\n          {\n            \"type\": \"<string>\",\n            \"number\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"number\": \"<string>\"\n          }\n        ],\n        \"status\": \"started\",\n        \"direction\": \"inbound\",\n        \"rate\": \"<string>\",\n        \"price\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"start_time\": \"<string>\",\n        \"end_time\": \"<string>\",\n        \"network\": \"<string>\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          }\n        },\n        \"uuid\": \"{{application.uuid}}\",\n        \"conversation_uuid\": \"\",\n        \"to\": [\n          {\n            \"type\": \"<string>\",\n            \"number\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"number\": \"<string>\"\n          }\n        ],\n        \"from\": [\n          {\n            \"type\": \"<string>\",\n            \"number\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"number\": \"<string>\"\n          }\n        ],\n        \"status\": \"ringing\",\n        \"direction\": \"outbound\",\n        \"rate\": \"<string>\",\n        \"price\": \"<string>\",\n        \"duration\": \"<string>\",\n        \"start_time\": \"<string>\",\n        \"end_time\": \"<string>\",\n        \"network\": \"<string>\"\n      }\n    ]\n  }\n}"
+								},
+								{
+									"id": "a40400c8-6640-48ea-acdb-78f20c5217bb",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"description": "(Required) UUID of the application",
+												"key": "ApplicationId",
+												"value": "{{application.uuid}}"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/voice/calls?status=machine&date_start=&date_end=&page_size=10&record_index=0&order=asc&conversation_uuid=&api-version=",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"voice",
+												"calls"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "machine",
+													"description": "Filter by call status"
+												},
+												{
+													"key": "date_start",
+													"value": "",
+													"description": "Return the records that occurred after this point in time"
+												},
+												{
+													"key": "date_end",
+													"value": "",
+													"description": "Return the records that occurred before this point in time"
+												},
+												{
+													"key": "page_size",
+													"value": "10",
+													"description": "Return this amount of records in the response"
+												},
+												{
+													"key": "record_index",
+													"value": "0",
+													"description": "Return calls from this index in the response"
+												},
+												{
+													"key": "order",
+													"value": "asc",
+													"description": "Either ascending or descending order."
+												},
+												{
+													"key": "conversation_uuid",
+													"value": "",
+													"description": "Return all the records associated with a specific conversation."
+												},
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											]
+										},
+										"description": "Get details of your calls.\nFiltering works by tunning the following fields\n - status\n - date_start\n - date_end\n - conversation_uuid\n\nPaging configuration fields\n - page_size (default 10)\n - record_index (default 0)\n - order (default asc)"
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"id": "fed1e6ea-80b9-4de9-84ef-e1bd336e79ec"
+				}
+			],
+			"id": "e5d13d9d-6e9d-4732-839c-fc1f8936be07"
+		},
+		{
+			"name": "applications",
+			"item": [
+				{
+					"name": "{uuid}",
+					"item": [
+						{
+							"name": "Details of a specific application",
+							"id": "14bf664e-a861-4c6b-b27a-b16d2d3e3ace",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/applications/:uuid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"applications",
+										":uuid"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "{{application.uuid}}"
+										}
+									]
+								},
+								"description": "Get detailed information of a specific application"
+							},
+							"response": [
+								{
+									"id": "2f3c3672-f2f4-496d-b1bf-e187f71158fd",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/applications/:uuid",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"applications",
+												":uuid"
+											],
+											"query": [
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "uuid",
+													"value": "{{application.uuid}}"
+												}
+											]
+										},
+										"description": "Get detailed information of a specific application"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"voice\": {\n    \"webhooks\": [\n      {\n        \"enpoint_type\": \"answer_url\",\n        \"endpoint\": \"<string>\",\n        \"http_method\": \"GET\"\n      },\n      {\n        \"enpoint_type\": \"answer_url\",\n        \"endpoint\": \"<string>\",\n        \"http_method\": \"GET\"\n      }\n    ]\n  },\n  \"keys\": {\n    \"public_key\": \"<string>\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  }\n}"
+								},
+								{
+									"id": "0bfae3fb-e6bc-4833-b4bb-9f006cccf5e8",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/applications/:uuid?api-version=",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"applications",
+												":uuid"
+											],
+											"query": [
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "uuid",
+													"value": "{{application.uuid}}"
+												}
+											]
+										},
+										"description": "Get detailed information of a specific application"
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Modify an existing application",
+							"id": "82f68828-48e0-4e1c-9814-adc1db8632ed",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/applications/:uuid?name={{application.name}}&type=voice&answer_url={{application.answer_url}}&answer_method=GET&event_url={{application.event_url}}&event_method=GET",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"applications",
+										":uuid"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "{{application.name}}",
+											"description": "(Required) The name of your application."
+										},
+										{
+											"key": "type",
+											"value": "voice",
+											"description": "(Required) Products you access with this application"
+										},
+										{
+											"key": "answer_url",
+											"value": "{{application.answer_url}}",
+											"description": "(Required) The webhook endpoint where you provide the Nexmo Call Control Object that governs this call."
+										},
+										{
+											"key": "answer_method",
+											"value": "GET",
+											"description": "The HTTP method used to make the request to `answer_url`"
+										},
+										{
+											"key": "event_url",
+											"value": "{{application.event_url}}",
+											"description": "(Required) URL to send events when status updates"
+										},
+										{
+											"key": "event_method",
+											"value": "GET",
+											"description": "The HTTP method used to make the request to `event_method`"
+										},
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "{{application.uuid}}"
+										}
+									]
+								},
+								"description": "Modify an existing application"
+							},
+							"response": [
+								{
+									"id": "ed4b466e-fcc1-441f-8f67-88d9c257d53e",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/applications/:uuid?name={{application.name}}&type=voice&answer_url={{application.answer_url}}&answer_method=GET&event_url={{application.event_url}}&event_method=GET",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"applications",
+												":uuid"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "{{application.name}}",
+													"description": "(Required) The name of your application."
+												},
+												{
+													"key": "type",
+													"value": "voice",
+													"description": "(Required) Products you access with this application"
+												},
+												{
+													"key": "answer_url",
+													"value": "{{application.answer_url}}",
+													"description": "(Required) The webhook endpoint where you provide the Nexmo Call Control Object that governs this call."
+												},
+												{
+													"key": "answer_method",
+													"value": "GET",
+													"description": "The HTTP method used to make the request to `answer_url`"
+												},
+												{
+													"key": "event_url",
+													"value": "{{application.event_url}}",
+													"description": "(Required) URL to send events when status updates"
+												},
+												{
+													"key": "event_method",
+													"value": "GET",
+													"description": "The HTTP method used to make the request to `event_method`"
+												},
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "uuid",
+													"value": "{{application.uuid}}"
+												}
+											]
+										},
+										"description": "Modify an existing application"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"voice\": {\n    \"webhooks\": [\n      {\n        \"enpoint_type\": \"answer_url\",\n        \"endpoint\": \"<string>\",\n        \"http_method\": \"GET\"\n      },\n      {\n        \"enpoint_type\": \"answer_url\",\n        \"endpoint\": \"<string>\",\n        \"http_method\": \"GET\"\n      }\n    ]\n  },\n  \"keys\": {\n    \"public_key\": \"<string>\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  }\n}"
+								},
+								{
+									"id": "3361330e-bdaa-4d04-b15b-151e812320e5",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/applications/:uuid?name={{application.name}}&type=voice&answer_url={{application.answer_url}}&answer_method=GET&event_url={{application.event_url}}&event_method=GET&api-version=",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"applications",
+												":uuid"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "{{application.name}}",
+													"description": "(Required) The name of your application."
+												},
+												{
+													"key": "type",
+													"value": "voice",
+													"description": "(Required) Products you access with this application"
+												},
+												{
+													"key": "answer_url",
+													"value": "{{application.answer_url}}",
+													"description": "(Required) The webhook endpoint where you provide the Nexmo Call Control Object that governs this call."
+												},
+												{
+													"key": "answer_method",
+													"value": "GET",
+													"description": "The HTTP method used to make the request to `answer_url`"
+												},
+												{
+													"key": "event_url",
+													"value": "{{application.event_url}}",
+													"description": "(Required) URL to send events when status updates"
+												},
+												{
+													"key": "event_method",
+													"value": "GET",
+													"description": "The HTTP method used to make the request to `event_method`"
+												},
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "uuid",
+													"value": "{{application.uuid}}"
+												}
+											]
+										},
+										"description": "Modify an existing application"
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete application",
+							"id": "c3a16a2c-0895-46ad-b12c-722a64b02ea6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/applications/:uuid",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"applications",
+										":uuid"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "{{application.uuid}}"
+										}
+									]
+								},
+								"description": "Deletes the existing application"
+							},
+							"response": [
+								{
+									"id": "6c43554a-e68c-432d-9bca-fb014232333d",
+									"name": "No Content",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "API-version to use. Not provided uses latest",
+												"key": "api-version",
+												"value": "",
+												"disabled": true
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/applications/:uuid",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"applications",
+												":uuid"
+											],
+											"query": [
+												{
+													"key": "api-version",
+													"value": "",
+													"description": "API-version to use. Not provided uses latest",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "uuid",
+													"value": "{{application.uuid}}"
+												}
+											]
+										},
+										"description": "Deletes the existing application"
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"<string>\",\n  \"uuid\": \"{{application.uuid}}\"\n}"
+								}
+							]
+						}
+					],
+					"id": "0193327d-f0fc-4e24-9f30-6162a647058d"
+				},
+				{
+					"name": "New Application",
+					"id": "a7b2f7e1-670f-477b-84b0-65d849c5b794",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "API-version to use. Not provided uses latest",
+								"key": "api-version",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"description": "(Required) ",
+									"key": "name",
+									"value": "{{application.name}}"
+								},
+								{
+									"description": "(Required) ",
+									"key": "type",
+									"value": "voice"
+								},
+								{
+									"description": "(Required) The webhook endpoint where you provide theNexmo Call Control Object that governs this call. As soon as your user answers a call Nexmo makes a request to `answer_url`",
+									"key": "answer_url",
+									"value": "{{application.answer_url}}"
+								},
+								{
+									"description": "(Required) The webhook endpoint where call progress events are sent to. For more information about the values sent, see callback",
+									"key": "event_url",
+									"value": "{{application.event_url}}"
+								},
+								{
+									"description": "The HTTP method used to make the request to answer_url. The default value is `GET`",
+									"key": "answer_method",
+									"value": "GET"
+								},
+								{
+									"description": "The HTTP method used to make the request to answer_url. The default value is `GET`",
+									"key": "event_method",
+									"value": "GET"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/applications",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"applications"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "",
+									"description": "API-version to use. Not provided uses latest",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Create a new application\nThe basic body needs to include:\n - `name` with the name of the application\n - `type` set to `voice`\n - `answer_url` the URL where your webhook delivers the NCCO that governs this call. As soon as your user answers a call Nexmo makes a request to answer_url.\n - `event_url` the API sends event information asynchronously to this URL when status changes.\n\nCreates a call and returns a JSON object with the call identifier (uuid), status of the call, conversation_uuid the call is attached to and the direction of the call.\n"
+					},
+					"response": [
+						{
+							"id": "7b58df0e-70fb-4681-9e70-303986b2eba5",
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) ",
+											"key": "name",
+											"value": "{{application.name}}"
+										},
+										{
+											"description": "(Required) ",
+											"key": "type",
+											"value": "voice"
+										},
+										{
+											"description": "(Required) The webhook endpoint where you provide theNexmo Call Control Object that governs this call. As soon as your user answers a call Nexmo makes a request to `answer_url`",
+											"key": "answer_url",
+											"value": "{{application.answer_url}}"
+										},
+										{
+											"description": "(Required) The webhook endpoint where call progress events are sent to. For more information about the values sent, see callback",
+											"key": "event_url",
+											"value": "{{application.event_url}}"
+										},
+										{
+											"description": "The HTTP method used to make the request to answer_url. The default value is `GET`",
+											"key": "answer_method",
+											"value": "GET"
+										},
+										{
+											"description": "The HTTP method used to make the request to answer_url. The default value is `GET`",
+											"key": "event_method",
+											"value": "GET"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/applications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"applications"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Create a new application\nThe basic body needs to include:\n - `name` with the name of the application\n - `type` set to `voice`\n - `answer_url` the URL where your webhook delivers the NCCO that governs this call. As soon as your user answers a call Nexmo makes a request to answer_url.\n - `event_url` the API sends event information asynchronously to this URL when status changes.\n\nCreates a call and returns a JSON object with the call identifier (uuid), status of the call, conversation_uuid the call is attached to and the direction of the call.\n"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"voice\": {\n    \"webhooks\": [\n      {\n        \"enpoint_type\": \"answer_url\",\n        \"endpoint\": \"<string>\",\n        \"http_method\": \"GET\"\n      },\n      {\n        \"enpoint_type\": \"answer_url\",\n        \"endpoint\": \"<string>\",\n        \"http_method\": \"GET\"\n      }\n    ]\n  },\n  \"keys\": {\n    \"public_key\": \"<string>\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  }\n}"
+						},
+						{
+							"id": "c6c9b263-eea7-4628-a913-473e357f0c50",
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) ",
+											"key": "name",
+											"value": "{{application.name}}"
+										},
+										{
+											"description": "(Required) ",
+											"key": "type",
+											"value": "voice"
+										},
+										{
+											"description": "(Required) The webhook endpoint where you provide theNexmo Call Control Object that governs this call. As soon as your user answers a call Nexmo makes a request to `answer_url`",
+											"key": "answer_url",
+											"value": "{{application.answer_url}}"
+										},
+										{
+											"description": "(Required) The webhook endpoint where call progress events are sent to. For more information about the values sent, see callback",
+											"key": "event_url",
+											"value": "{{application.event_url}}"
+										},
+										{
+											"description": "The HTTP method used to make the request to answer_url. The default value is `GET`",
+											"key": "answer_method",
+											"value": "GET"
+										},
+										{
+											"description": "The HTTP method used to make the request to answer_url. The default value is `GET`",
+											"key": "event_method",
+											"value": "GET"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/applications?api-version=",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"applications"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Create a new application\nThe basic body needs to include:\n - `name` with the name of the application\n - `type` set to `voice`\n - `answer_url` the URL where your webhook delivers the NCCO that governs this call. As soon as your user answers a call Nexmo makes a request to answer_url.\n - `event_url` the API sends event information asynchronously to this URL when status changes.\n\nCreates a call and returns a JSON object with the call identifier (uuid), status of the call, conversation_uuid the call is attached to and the direction of the call.\n"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Details of your applications.",
+					"id": "cfc44fb8-a187-4fa8-b527-2007e27b5ade",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "API-version to use. Not provided uses latest",
+								"key": "api-version",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/applications?page_size=10&page_index=0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"applications"
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "Set the number of items returned on each call to this endpoint"
+								},
+								{
+									"key": "page_index",
+									"value": "0",
+									"description": "Set the offset from the first page"
+								},
+								{
+									"key": "api-version",
+									"value": "",
+									"description": "API-version to use. Not provided uses latest",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get details of your applications.\n\n This endpoint is not available for sandbox environments, in order to use it please apply for production."
+					},
+					"response": [
+						{
+							"id": "9ac9b1ae-1716-4beb-a843-28d7bf9cb9ee",
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/applications?page_size=10&page_index=0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"applications"
+									],
+									"query": [
+										{
+											"key": "page_size",
+											"value": "10",
+											"description": "Set the number of items returned on each call to this endpoint"
+										},
+										{
+											"key": "page_index",
+											"value": "0",
+											"description": "Set the offset from the first page"
+										},
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Get details of your applications.\n\n This endpoint is not available for sandbox environments, in order to use it please apply for production."
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"count\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"record_index\": \"<integer>\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"applications\": [\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"voice\": {\n          \"webhooks\": [\n            {\n              \"enpoint_type\": \"answer_url\",\n              \"endpoint\": \"<string>\",\n              \"http_method\": \"GET\"\n            },\n            {\n              \"enpoint_type\": \"answer_url\",\n              \"endpoint\": \"<string>\",\n              \"http_method\": \"GET\"\n            }\n          ]\n        },\n        \"keys\": {\n          \"public_key\": \"<string>\"\n        },\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          }\n        }\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"voice\": {\n          \"webhooks\": [\n            {\n              \"enpoint_type\": \"answer_url\",\n              \"endpoint\": \"<string>\",\n              \"http_method\": \"GET\"\n            },\n            {\n              \"enpoint_type\": \"answer_url\",\n              \"endpoint\": \"<string>\",\n              \"http_method\": \"GET\"\n            }\n          ]\n        },\n        \"keys\": {\n          \"public_key\": \"<string>\"\n        },\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          }\n        }\n      }\n    ]\n  }\n}"
+						},
+						{
+							"id": "465eaee2-12b7-42d8-9a88-7a6362d5c878",
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "API-version to use. Not provided uses latest",
+										"key": "api-version",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/applications?page_size=10&page_index=0&api-version=",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"applications"
+									],
+									"query": [
+										{
+											"key": "page_size",
+											"value": "10",
+											"description": "Set the number of items returned on each call to this endpoint"
+										},
+										{
+											"key": "page_index",
+											"value": "0",
+											"description": "Set the offset from the first page"
+										},
+										{
+											"key": "api-version",
+											"value": "",
+											"description": "API-version to use. Not provided uses latest",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Get details of your applications.\n\n This endpoint is not available for sandbox environments, in order to use it please apply for production."
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"type\": \"<string>\",\n  \"error_title\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"id": "4a8ab666-caed-48df-b5a8-54c00e3f7f15"
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken?grant_type=client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "access_token",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "dcd4c982-4564-4428-a8cb-4e20d1597029",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7f4cd54e-29cf-47ee-b4c5-f7618092a09d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8bd67423-93d6-4942-a005-115512bb290b",
+			"key": "baseUrl",
+			"value": "https://api-prd.kpn.com/communication/nexmo/"
+		},
+		{
+			"id": "3c5ddc45-3e5c-4d30-bedf-da483d1f8fa5",
+			"key": "client_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "a752a022-5115-4081-b0fe-c65662c3a00c",
+			"key": "client_secret",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "6a056948-0ca1-4a57-9e11-a6e0cf60a4ab",
+			"key": "application.name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "dd372453-9762-4d76-a431-ba0cefbf0d99",
+			"key": "application.answer_url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "37e98ee1-8c27-483e-8d2c-2246ca492da5",
+			"key": "application.event_url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "d2717965-0af7-4137-8906-8d8c2facb0df",
+			"key": "application.uuid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "95611cec-354d-4ce5-9806-9c62c951cacf",
+			"key": "to.phonenumber",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "7b15a27d-bd8e-46bb-8de5-51c27c96754e",
+			"key": "from.phonenumber",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "b368222d-3725-4a24-a0e4-7319e3033ad2",
+			"key": "voice.uuid",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
